@@ -1,0 +1,2 @@
+class CoreInitException(AttributeError):
+    pass
