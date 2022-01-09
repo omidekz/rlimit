@@ -1,9 +1,9 @@
 import functools
+from typing import Callable, ClassVar, Optional, Type
 from starlette.requests import Request
+from starlette.exceptions import HTTPException
 from per import Per
 from memory import Memory
-from typing import Callable, Optional, Type
-from fastapi import HTTPException
 
 
 def identifier(request: Request):
@@ -22,11 +22,15 @@ class Limiter(Per):
     """
     times: int
     per: int
-    memory: Type[Memory] = Memory
+    memory: ClassVar[Type[Memory]] = Memory
     ex: Type[HTTPException] = HTTPException
     identifier: Callable[[Request], str] = identifier
     key_maker: Optional[Callable[[Request, dict], str]]
     request_parameter_name: str = 'request'
+
+    @classmethod
+    def init(cls, memory=Memory):
+        cls.memory = memory
 
     def __call__(self, func):
         @functools.wraps(func)
