@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="farlimit",
-    version="0.0.1",
+    version="0.1.1",
     author="Omid Karimzade",
     author_email="omidekz@gmail.com",
     description="FastAPIRateLimit",
