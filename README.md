@@ -1,6 +1,7 @@
 # FastAPIRateLimit
 
 ## Usage
+    pip install farlimit
 NOTE you have to define `starlette.requests.Request` as first argument
 
 ```py
