@@ -7,6 +7,7 @@ from .memory import Memory
 
 
 def identifier(request: Request):
+    # TODO ** NAT PROBLEM !! **
     forwarded = request.headers.get("X-Forwarded-For")
     if forwarded:
         ip = forwarded.split(",")[0]
