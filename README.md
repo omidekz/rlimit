@@ -22,7 +22,7 @@ def test_ratelimit(request: Request):
 
 # CNEEDS
   - RedisMemory
-  - custom identifier
+  - ~~custom identifier~~
   - custom execption handler or callbacks
   - some api for reports
   - could we handle race condition?
