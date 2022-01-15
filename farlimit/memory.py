@@ -1,5 +1,6 @@
 from datetime import datetime as dt, timedelta
 from errors import CoreInitException
+from per import Per
 
 
 class Memory:
@@ -18,6 +19,7 @@ class Memory:
     def inc(cls, key: str, by: int = 1, ttl: int = None):
         """
         :ttl: int
+            - default = 60 second
             - in milliseconds
             - ttl will set once if the key does not exist
         :by: int
@@ -28,7 +30,7 @@ class Memory:
         if not cls.exists(key):
             cls.core[key] = {
                 'count': 0,
-                'until': dt.utcnow() + timedelta(milliseconds=ttl)
+                'until': dt.utcnow() + timedelta(milliseconds=ttl or 60 * Per.SECONDS)
             }
         cls.core[key]['count'] += by
         return cls.core[key]['count']
