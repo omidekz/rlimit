@@ -1,5 +1,5 @@
 from datetime import datetime as dt, timedelta
-from .errors import CoreInitException
+from errors import CoreInitException
 
 
 class Memory:
