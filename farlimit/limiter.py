@@ -7,6 +7,7 @@ from .memory import Memory
 
 
 def identifier(request: Request):
+    # TODO ** NAT PROBLEM !! **
     forwarded = request.headers.get("X-Forwarded-For")
     if forwarded:
         ip = forwarded.split(",")[0]
@@ -27,6 +28,7 @@ class Limiter(Per):
     identifier: Callable[[Request], str] = identifier
     key_maker: Optional[Callable[[Request, dict], str]]
     request_parameter_name: str = 'request'
+    message: str = "too many requests"
 
     @classmethod
     def init(cls, memory=Memory):
@@ -39,6 +41,6 @@ class Limiter(Per):
             key = self.identifier(req) + ((':' + self.key_maker(req, kwargs)) if self.key_maker else '')
             times = self.memory.inc(key, ttl=self.per)
             if times > self.times:
-                raise HTTPException(429)
+                raise HTTPException(429, self.message)
             return func(**kwargs)
         return wrapper
