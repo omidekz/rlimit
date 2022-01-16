@@ -23,20 +23,24 @@ class Limiter(Per):
     """
     times: int
     per: int
-    memory: ClassVar[Type[Memory]] = Memory
     ex: Type[HTTPException] = HTTPException
-    identifier: Callable[[Union[Request, dict]], str] = identifier
     key_maker: Callable[[dict], str] = lambda ka: ''
     request_parameter_name: str = 'request'
     message: str = "too many requests"
+    memory: ClassVar[Type[Memory]] = Memory
+    identifier: ClassVar[Callable[[Union[Request, dict]], str]] = identifier
 
     @property
     def has_default_identifier(self):
         return self.identifier == identifier
 
     @classmethod
-    def init(cls, memory=Memory):
-        cls.memory = memory
+    def init(cls, memory=..., _identifier=...):
+        if memory != ...:
+            cls.memory = memory
+        if _identifier != ...:
+            cls.identifier = _identifier
+        return cls
 
     def __call__(self, func):
         @functools.wraps(func)
