@@ -21,7 +21,7 @@ def test_ratelimit(request: Request):
  - ### if need to extend **Limiter** [Memory](https://github.com/omidekz/farlimit/blob/15cc5edd7e95fac84fefadbc3cee401a55086404/farlimit/memory.py#L5) (like on redis to distributed services)
 
 # CNEEDS
-  - RedisMemory
+  - ~~RedisMemory~~
   - ~~custom identifier~~
   - custom execption handler or callbacks
   - some api for reports
