@@ -1,10 +1,9 @@
-from ctypes import Union
 import functools
-from typing import Callable, ClassVar, Optional, Type
+from typing import Callable, ClassVar, Type, Union
 from starlette.requests import Request
 from starlette.exceptions import HTTPException
-from .per import Per
-from .memory import Memory
+from per import Per
+from memory import Memory
 
 
 def identifier(request: Request):

@@ -1,17 +1,18 @@
 from datetime import datetime as dt, timedelta
 from errors import CoreInitException
 from per import Per
+from core_memory import Core
 
 
 class Memory:
-    core = dict()
+    core = Core()
 
     @classmethod
     def exists(cls, key: str):
         if cls.core is None:
             raise CoreInitException
-        if key not in cls.core \
-            or dt.utcnow() >= cls.core[key]['until']:
+        if not cls.core.get(key) \
+            or dt.utcnow() >= cls.core.get(key)['until']:
             return False
         return True
 
@@ -28,13 +29,23 @@ class Memory:
                 SET(key, VALUE(key) + by)
         """
         if not cls.exists(key):
-            cls.core[key] = {
-                'count': 0,
+            val = {
+                'count': 1,
                 'until': dt.utcnow() + timedelta(milliseconds=ttl or 60 * Per.SECONDS)
             }
-        cls.core[key]['count'] += by
-        return cls.core[key]['count']
+        else:
+            val = cls.core.get(key)
+            val['count'] += by
+        cls.core.set(key, val)
+        return val['count']
 
     @classmethod
     def value(cls, key: str):
         return cls.core.get(key, {}).get('count')
+
+
+class RedisMemory:
+    def __new__(cls, getter, setter):
+        class tmp(Memory):
+            core = Core(getter, setter)
+        return tmp
