@@ -1,6 +1,6 @@
 # FastAPIRateLimit
 
-# Contributing is F&E (`free&easy`) [Y](#cneeds)
+# Contributing is F&E [Y](#cneeds)
 ## Usage
     pip install farlimit
 NOTE you have to define `starlette.requests.Request` as first argument
