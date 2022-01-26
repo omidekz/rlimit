@@ -16,10 +16,11 @@ router = APIRouter(...)
 @Limiter(times=3, per=5 * Limiter.SECONDS)
 def test_ratelimit(request: Request):
     return 'no limit'
+
+
+@router
 ```
- - ### [Limiter Schema](https://github.com/omidekz/farlimit/blob/15cc5edd7e95fac84fefadbc3cee401a55086404/farlimit/limiter.py#L18) and options
  - ### [Limiter Description](./docs/limiter.md)
- - ### if need to extend **Limiter** [Memory](https://github.com/omidekz/farlimit/blob/15cc5edd7e95fac84fefadbc3cee401a55086404/farlimit/memory.py#L5) (like on redis to distributed services)
 
 # CNEEDS
   - ~~RedisMemory~~
