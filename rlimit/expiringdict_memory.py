@@ -20,8 +20,7 @@ class ExpiringDictMemory(BaseMemory):
             and self.data[key][less_than_now_index] <= now:
             less_than_now_index += 1
         active_calls = len(self.data[key][less_than_now_index:])
-        if less_than_now_index:
-            del self.data[key][:less_than_now_index]
+        del self.data[key][:less_than_now_index]
         return active_calls
 
     def exists(self, key: str) -> bool:
