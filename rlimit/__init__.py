@@ -1,6 +1,6 @@
-from per import Per
-from memory_abc import BaseMemory
-from expiringdict_memory import ExpiringDictMemory
-from base_limiter import BaseLimiter
-from base_limiter import BaseLimiter as Limiter
+from rlimit.per import Per
+from rlimit.memory_abc import BaseMemory
+from rlimit.expiringdict_memory import ExpiringDictMemory
+from rlimit.base_limiter import BaseLimiter
+from rlimit.base_limiter import BaseLimiter as Limiter
 

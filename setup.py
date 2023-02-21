@@ -6,19 +6,21 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="farlimit",
+    name="rlimit",
     python_requires=">=3.6",
-    version="0.1.7",
-    url="https://github.com/omidekz/farlimit",
+    version="1.1",
+    url="https://github.com/omidekz/rlimit",
     license="GPLv3",
-    description="FastAPIRateLimit",
+    description="Python Rate Limiter",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="Omid Karimzade",
+    author="omidekz",
+    keywords=['rate limit', 'python rate limit', 'rate limiter', 'python rate limiter'],
     author_email="omidekz@gmail.com",
+    requires=['pydantic'],
     packages=setuptools.find_packages(exclude=["test*"]),
     project_urls={
-        "Bug Tracker": "https://github.com/omidekz/farlimit/issues",
+        "Bug Tracker": "https://github.com/omidekz/rlimit/issues",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
