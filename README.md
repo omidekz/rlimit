@@ -10,7 +10,7 @@ to limit the call's `[frequent]` rates of any callable in python.
 
 ## Install
 
-`pip install git+https://github.com/omidekz/rlimit`
+`pip install rlimit`
 
 ----
 
