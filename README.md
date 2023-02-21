@@ -19,7 +19,7 @@ to limit the call's `[frequent]` rates of any callable in python.
 #### basic usage
 
 ```py
-from src.rlimit import Limiter, Per
+from rlimit import Limiter, Per
 from time import sleep
 
 
@@ -43,7 +43,7 @@ func_a()  # OverflowError
 useful when uses in class or creating embed key
 
 ```py
-from src.rlimit import Limiter, Per
+from rlimit import Limiter, Per
 
 
 @Limiter(
