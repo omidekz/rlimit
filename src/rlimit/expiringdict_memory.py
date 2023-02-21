@@ -1,6 +1,6 @@
 from typing import Dict, List
 from time import time
-from memory_abc import BaseMemory
+from .memory_abc import BaseMemory
 
 
 class ExpiringDictMemory(BaseMemory):

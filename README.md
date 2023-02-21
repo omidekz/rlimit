@@ -3,16 +3,23 @@
 this package help you
 to limit the call's `[frequent]` rates of any callable in python.
 
+* default built-in memory is : [`expiring dict memory`](src/rlimit/expiringdict_memory.py)
+  that not recommended for production usage
 
-* default built-in memory is : [`expiring dict memory`](rlimit/expiringdict_memory.py)
-that not recommended for production usage
+---
+
+## Install
+
+`pip install git+https://github.com/omidekz/rlimit`
+
+----
 
 ## Usage
 
-
 #### basic usage
+
 ```py
-from rlimit import Limiter, Per
+from src.rlimit import Limiter, Per
 from time import sleep
 
 
@@ -29,10 +36,14 @@ func_a()  # True
 func_a()  # True
 func_a()  # OverflowError
 ```
+
 ---
+
 #### key example
+useful when uses in class or creating embed key
+
 ```py
-from rlimit import Limiter, Per
+from src.rlimit import Limiter, Per
 
 
 @Limiter(
@@ -51,11 +62,13 @@ func_a('gzuz', 14)
 func_a('gzuz', 14)  # OverflowError
 func_a('gzuz', 13)  # OverflowError
 ```
+
 ---
 
-#### fastapi
+#### key, exception
+
 ```py
-from rlimit import Limiter, Per
+from src.rlimit import Limiter, Per
 from fastapi import APIRouter, HTTPException, Request
 
 router = APIRouter(...)
@@ -70,16 +83,20 @@ router = APIRouter(...)
 def test_ratelimit(request: Request):
     return 'no limit'
 ```
----
-## Install
+----
+#### Custom memory
+```py
+from rlimit import BaseMemory, BaseLimiter
 
-`pip install git+https://github.com/omidekz/rlimit`
 
-`pypi will add`
+class RedisMemory(BaseMemory):
+    def call_of(self, key: str) -> int: ...
 
+    def inc_call(self, key: str, ttl: float): ...
+```
 ---
 
 ## Custom Memory
 
 to implement new memory class,
-you have to extend [`BaseMemory`](rlimit/memory_abc.py) abstract class
+you have to extend [`BaseMemory`](src/rlimit/memory_abc.py) abstract class

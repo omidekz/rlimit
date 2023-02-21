@@ -1,7 +1,4 @@
-import uuid
-
-from base_limiter import BaseLimiter
-from per import Per
+from rlimit import BaseLimiter, Per
 import unittest
 from time import sleep
 

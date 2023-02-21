@@ -1,21 +1,26 @@
-from pydantic import BaseModel
 from typing import Callable, Union, ClassVar, Type
 import functools
 import uuid
-from memory_abc import BaseMemory
-from expiringdict_memory import ExpiringDictMemory
+from .memory_abc import BaseMemory
+from .expiringdict_memory import ExpiringDictMemory
+
+KeyType = Callable[[tuple, dict], str]
+ExceptionType = Union[Type[BaseException], BaseException]
 
 
-class BaseLimiter(BaseModel):
-    """
-        Usage
-            @Limiter(times=10, per=10*Per.SECONDS)
-    """
+class BaseLimiter:
     times: int
     per: float
-    key: Callable[[tuple, dict], str] = lambda *args, **kwargs: ''
+    key: KeyType = lambda *args, **kwargs: ''
+    exception: ExceptionType
     memory: ClassVar[BaseMemory] = ExpiringDictMemory()
-    exception: ClassVar[Union[Type[BaseException], BaseException]] = OverflowError
+
+    def __init__(self, times: int, per: float, key: KeyType = lambda *args, **kwargs: '',
+                 exception: ExceptionType = OverflowError):
+        self.times = times
+        self.per = per
+        self.key = key
+        self.exception = exception
 
     def __call__(self, func):
         base_key = str(uuid.uuid4())

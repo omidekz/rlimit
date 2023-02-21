@@ -8,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name="rlimit",
     python_requires=">=3.6",
-    version="1.1",
+    version="1.4",
     url="https://github.com/omidekz/rlimit",
     license="GPLv3",
     description="Python Rate Limiter",
@@ -17,8 +17,7 @@ setuptools.setup(
     author="omidekz",
     keywords=['rate limit', 'python rate limit', 'rate limiter', 'python rate limiter'],
     author_email="omidekz@gmail.com",
-    requires=['pydantic'],
-    packages=setuptools.find_packages(exclude=["test*"]),
+    packages=setuptools.find_packages(exclude=['tests']),
     project_urls={
         "Bug Tracker": "https://github.com/omidekz/rlimit/issues",
     },
