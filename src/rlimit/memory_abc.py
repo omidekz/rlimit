@@ -15,6 +15,3 @@ class BaseMemory(abc.ABC):
             get the not dispatched calls of key
         """
         ...
-
-    @abc.abstractmethod
-    def exists(self, key: str) -> bool: ...
