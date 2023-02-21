@@ -12,7 +12,7 @@ class BaseLimiter(BaseModel):
             @Limiter(times=10, per=10*Per.SECONDS)
     """
     times: int
-    per: int
+    per: float
     key: Callable[[tuple, dict], str] = lambda *args, **kwargs: ''
     memory: ClassVar[BaseMemory] = ExpiringDictMemory()
     exception: ClassVar[Union[Type[BaseException], BaseException]] = OverflowError
