@@ -40,6 +40,7 @@ func_a()  # OverflowError
 ---
 
 #### key example
+
 useful when uses in class or creating embed key
 
 ```py
@@ -83,18 +84,8 @@ router = APIRouter(...)
 def test_ratelimit(request: Request):
     return 'no limit'
 ```
+
 ----
-#### Custom memory
-```py
-from rlimit import BaseMemory, BaseLimiter
-
-
-class RedisMemory(BaseMemory):
-    def call_of(self, key: str) -> int: ...
-
-    def inc_call(self, key: str, ttl: float): ...
-```
----
 
 ## Custom Memory
 
