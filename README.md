@@ -9,7 +9,7 @@ this module help you to use rate limit in dev/production stage
 `pip install git+https://github.com/omidekz/rlimit`
 
 ```py
-from farlimit import Limiter
+from rlimit import Limiter
 from fastapi import APIRouter, HTTPException
 
 router = APIRouter(...)
