@@ -1,30 +1,21 @@
-# FastAPIRateLimit
+# Rate Limit
 
-# Contributing is F&E [Y](#cneeds)
+this module help you to use rate limit in dev/production stage
+
+\* NOTE in production we suggest use another type of `Memory` instead `expiring dict memory`
+
 ## Usage
-    pip install farlimit
-NOTE you have to define `starlette.requests.Request` as first argument
+
+`pip install git+https://github.com/omidekz/rlimit`
 
 ```py
 from farlimit import Limiter
-from fastapi import APIRouter
-from starlette.requests import Request
+from fastapi import APIRouter, HTTPException
 
 router = APIRouter(...)
 
-@router.<any-method>(path)
-@Limiter(times=3, per=5 * Limiter.SECONDS)
+@router.get(path)
+@Limiter(times=3, per=5 * Limiter.SECOND, key=lambda r: r.client.host, exception=HTTPException)
 def test_ratelimit(request: Request):
     return 'no limit'
-
-
-@router
 ```
- - ### [Limiter Description](./docs/limiter.md)
-
-# CNEEDS
-  - ~~RedisMemory~~
-  - ~~custom identifier~~
-  - custom execption handler or callbacks
-  - some api for reports
-  - could we handle race condition?
