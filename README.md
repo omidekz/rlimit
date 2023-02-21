@@ -68,7 +68,7 @@ func_a('gzuz', 13)  # OverflowError
 #### key, exception
 
 ```py
-from src.rlimit import Limiter, Per
+from rlimit import Limiter, Per
 from fastapi import APIRouter, HTTPException, Request
 
 router = APIRouter(...)
